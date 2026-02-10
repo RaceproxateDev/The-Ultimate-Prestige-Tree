@@ -12,14 +12,18 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.0",
-	name: "The Launch",
+	num: "0.1",
+	name: "Final",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
 	<h3>v0.0</h3><br>
 		- Added things.<br>
-		- Added stuff.`
+		- Added stuff. <br>
+		<h3>v0.1</h3><br>
+		- Added Omega layer.<br>
+		- Added more milestones.<br>
+		- Added more upgrades.<br>`
 
 let winText = `Congratulations! You have reached the end and beaten this game, but for now...`
 
@@ -62,6 +66,9 @@ function getPointGen() {
 	if (hasMilestone('d', 8)) gain = gain.pow(3)
 	if (hasUpgrade('d', 11)) gain = gain.tetrate(1.1)
 	if (hasUpgrade('d', 12)) gain = gain.times(upgradeEffect('d', 12))
+	if (hasMilestone('o', 2)) gain = gain.tetrate(1.5)
+	if (hasMilestone('o', 5)) gain = gain.pow(100)
+	if (hasMilestone('o', 7)) gain = gain.times(1e10000)
 	
 	return gain
 }
@@ -72,12 +79,12 @@ function addedPlayerData() { return {
 
 // Display extra things at the top of the page
 var displayThings = [
-	"<br><h3> endgame: 1 omega point </h3>",
+	"<br><h3> Endgame: 80 Omega points </h3>",
 ]
 
 // Determines when the game "ends"
 function isEndgame() {
-	return player.o.points.gte(1)
+	return player.o.points.gte(80)
 }
 
 // Less important things beyond this point!
